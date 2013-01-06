@@ -3,11 +3,49 @@
 </head>
 
 <body>
-  {{> hello}}
+  <div>
+    {{> activityList}}
+  </div>
+  <div>
+    {{> creation}}
+  </div>
 </body>
 
-<template name="hello">
-  <h1>Hello World!</h1>
-  {{greeting}}
-  <input type="button" value="Click" />
+<template name="activityList">
+  <h1>Activities:</h1>
+  {{#each activities}}
+    <div>
+      {{>activity}}  
+    </div>
+  {{/each}}
 </template>
+
+<template name = "activity">
+  <span class="title"> {{title}}</span>
+  <span class="details"> {{details}}</span>
+  <input class="Button" id="editButton" type="button" value="edit"></input>
+  <input class="Button" id="deleteButton" type="button" value="delete"></input>
+</template>
+
+
+<template name = "creation">
+  <label> Event Name </label>
+  <input id="newActivityTitle" type="text" name="eventTitle"></input>
+  <label> Description </label>
+  <input id="newActivityDetails" type="text" name="eventDetails"></input>
+  <input class="button" type="button" id="newActivity" value="Create"></input>
+
+</template>
+
+<template name="activityView">
+  {{#if selectedActivity}}
+  {{#with selectedActivity}}
+    <div>
+      <p>{{ title }}</p>
+        <textarea id="activityDetail" rows="10" cols="80">{{ details }}</textarea>
+    </div>
+   {{/with}}
+   {{/if}}
+</template>
+
+
